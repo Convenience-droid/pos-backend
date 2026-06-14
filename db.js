@@ -109,3 +109,20 @@ async function initDB() {
       ['8850006103001','มันฝรั่งทอด 75g',      'Potato Chips 75g',    'ដំឡូងចៀន 75g',     'ขนม',       'Snacks',   'អាហារសម្រន់',     20, 30],
       ['8850006103002','ช็อกโกแลต',            'Chocolate',           'សូកូឡា',            'ขนม',       'Snacks',   'អាហារសម្រន់',     35, 25],
       ['8850006103003','คุกกี้ 150g',          'Cookies 150g',        'នំខូគី 150g',       'ขนม',       'Snacks',   'អាហារសម្រន់',     45, 20],
+      ['8850006104001','สบู่ก้อน',             'Bar Soap',            'សាប៊ូ',             'ของใช้',    'Household','គ្រឿងប្រើប្រាស់', 25, 20],
+      ['8850006104002','ยาสีฟัน 150g',         'Toothpaste 150g',     'ថ្នាំដុសធ្មេញ 150g','ของใช้',   'Household','គ្រឿងប្រើប្រាស់', 45, 15],
+      ['8850006104003','กระดาษชำระ 6ม้วน',    'Tissue Paper 6 Rolls','ក្រដាស់សំអាត 6 នំ', 'ของใช้',   'Household','គ្រឿងប្រើប្រាស់', 55, 20],
+    ];
+    for (const s of seeds) {
+      await run(
+        `INSERT INTO products (barcode,name_th,name_en,name_km,category_th,category_en,category_km,price,stock) VALUES (?,?,?,?,?,?,?,?,?)`,
+        s
+      );
+    }
+    console.log('✅ Seed data inserted (16 products)');
+  }
+
+  console.log('✅ Database ready');
+}
+
+module.exports = { db, run, get, all, initDB };
